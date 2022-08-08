@@ -35,7 +35,6 @@ def again():
 
 def convert_base(number, to_base=12, from_base=12):
     # first convert to decimal number
-    print(number)
     n = int(number, from_base) if isinstance(number, str) else number
     # now convert decimal to 'to_base' base
     alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
