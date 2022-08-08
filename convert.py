@@ -39,12 +39,12 @@ def convert_base(number, to_base=12, from_base=12):
     # now convert decimal to 'to_base' base
     alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     res = ""
+
     while n > 0:
         n, m = divmod(n, to_base)
         res += alphabet[m]
-        return res[::-1]
-    else:
-        return 0
+
+    return res[::-1] if res else 0
 
 
 calculate()
