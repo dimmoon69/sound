@@ -4,7 +4,7 @@ def calculate():
     number_2 = input('Введите второе число: ')
 
     if operation == '+':
-        print('{} + {} = {}'.format(number_1, number_2, convert_base(int(number_1, 12) + int(number_2, 12))))
+        print(f'{number_1} + {number_2} = {convert_base(int(number_1, 12) + int(number_2, 12))}')
 
     elif operation == '-':
         print('{} - {} = {}'.format(number_1, number_2, convert_base(int(number_1, 12) - int(number_2, 12))))
@@ -35,6 +35,7 @@ def again():
 
 def convert_base(number, to_base=12, from_base=12):
     # first convert to decimal number
+    print(number)
     n = int(number, from_base) if isinstance(number, str) else number
     # now convert decimal to 'to_base' base
     alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -42,7 +43,10 @@ def convert_base(number, to_base=12, from_base=12):
     while n > 0:
         n, m = divmod(n, to_base)
         res += alphabet[m]
-    return res[::-1]
+        return res[::-1]
+    else:
+        return 0
 
 
 calculate()
+
