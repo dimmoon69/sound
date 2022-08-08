@@ -1,3 +1,6 @@
+from matplotlib import pyplot as plt
+from scipy import ifft
+
 from thinkdsp import read_wave
 
 wave1 = read_wave('do.wav')
@@ -29,8 +32,19 @@ spectrum2 = segment2.make_spectrum()
 spectrum2.plot(high=7000)
 
 spectrum1 = segment1.make_spectrum()
+# print(spectrum1.__dict__)
+a = spectrum1.__dict__.get("fs")[:20]
+# print(a)
 spectrum1.plot(high=1000)
+
 spectrum2 = segment2.make_spectrum()
+b = spectrum2.__dict__.get("fs")[:20]
+# print(b)
+# for i in b:
+#     if i in a:
+#         print("da", i)
+#     else:
+#         print("net")
 spectrum2.plot(high=1000)
 
 do = spectrum1.peaks()[:30]
@@ -40,7 +54,6 @@ spectrum1.low_pass(2000)
 spectrum1.make_wave().make_audio()
 
 do_major = spectrum2.peaks()[:30]
-# print(do_major)
 
 spectrum2.low_pass(2000)
 spectrum2.make_wave().make_audio()
@@ -52,4 +65,9 @@ for i in do:
             do_major.remove(x)
 
 print(do_major)
+
+# plt.plot(do_major)
+# plt.show()
+
+# print(transform)
 
