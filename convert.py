@@ -42,10 +42,9 @@ def convert_base(number, to_base=12, from_base=12):
 
     while n > 0:
         n, m = divmod(n, to_base)
-        res += alphabet[m]
+        res += alphabet[int(m)]
 
     return res[::-1] if res else 0
 
 
 calculate()
-
