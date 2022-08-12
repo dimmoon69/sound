@@ -1,29 +1,69 @@
+def to_base_12(num, base=12):
+    # перевод в "12"
+    alpha = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    b = alpha[num % base]
+    while num >= base:
+        num = num // base
+        b += alpha[num % base]
+    return b[::-1]
+
+
+# перевод в "10"
+def to_base_10(number):
+    if "." in number:
+        a, b = int(number.split(".")[0], 12), int(number.split(".")[1], 12)
+        return float(f"{a}.{b}")
+    return int(number, 12)
+
+
+def check_float(num):
+    if num < 0:
+        num = abs(num)
+        zn = "-"
+    else:
+        zn = ""
+
+    if isinstance(num, float):
+        out = f"{to_base_12(int(str(num).split('.')[0]))}.{to_base_12(int(str(num).split('.')[1]))}"
+    else:
+        out = to_base_12(num)
+
+    if out.split(".")[-1] == "0":
+        out = out.split(".")[0]
+    return zn + out
+
+
 def calculate():
-    number_1 = input('Введите первое число: ')
+    # операции с числами
+    left_number = input('Введите первое число: ')
     operation = input('Введите математическую операцию, для выполнения: ')
-    number_2 = input('Введите второе число: ')
+    right_number = input('Введите второе число: ')
+
+    left_number_10 = to_base_10(left_number)
+    right_number_10 = to_base_10(right_number)
 
     if operation == '+':
-        print(f'{number_1} + {number_2} = {convert_base(int(number_1, 12) + int(number_2, 12))}')
+        print(f'{left_number} + {right_number} = {check_float(left_number_10 + right_number_10)}')
 
     elif operation == '-':
-        print('{} - {} = {}'.format(number_1, number_2, convert_base(int(number_1, 12) - int(number_2, 12))))
+        print(f'{left_number} - {right_number} = {check_float(left_number_10 - right_number_10)}')
 
     elif operation == '*':
-        print('{} * {} = {}'.format(number_1, number_2, convert_base(int(number_1, 12) * int(number_2, 12))))
+        print(f'{left_number} * {right_number} = {check_float(left_number_10 * right_number_10)}')
 
     elif operation == '/':
-        print('{} / {} = {}'.format(number_1, number_2, convert_base(int(number_1, 12) / int(number_2, 12))))
-
+        if right_number != "0":
+            print(f'{left_number} / {right_number} = {check_float(left_number_10 / right_number_10)}')
+        else:
+            print("Деление на 0")
     else:
         print('Вы не ввели допустимый оператор, пожалуйста, запустите программу еще раз.')
 
-    # Add again() function to calculate() function
     again()
 
 
 def again():
-    calc_again = input('Повторить введите Y или N для выхода.')
+    calc_again = input('Введите Y для повторения или N для выхода.')
 
     if calc_again.upper() == 'Y':
         calculate()
@@ -31,20 +71,6 @@ def again():
         print('Увидимся позже.')
     else:
         again()
-
-
-def convert_base(number, to_base=12, from_base=12):
-    # first convert to decimal number
-    n = int(number, from_base) if isinstance(number, str) else number
-    # now convert decimal to 'to_base' base
-    alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    res = ""
-
-    while n > 0:
-        n, m = divmod(n, to_base)
-        res += alphabet[int(m)]
-
-    return res[::-1] if res else 0
 
 
 calculate()
