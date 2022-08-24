@@ -21,7 +21,6 @@ from scipy.io import wavfile
 
 import matplotlib.pyplot as plt
 
-from list_test import a
 
 try:
     from IPython.display import Audio
