@@ -8,6 +8,9 @@ jupyter = "*"
 numpy = "*"
 scipy = "*"
 matplotlib = "*"
+pandas = "*"
+openpyxl = "*"
+xlwt = "*"
 
 [dev-packages]
 
