@@ -1,3 +1,7 @@
+import decimal
+from decimal import Decimal
+
+
 def to_base_12(num, base=12):
     # перевод в "12"
     alpha = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -12,7 +16,7 @@ def to_base_12(num, base=12):
 def to_base_10(number):
     if "." in number:
         a, b = int(number.split(".")[0], 12), int(number.split(".")[1], 12)
-        return float(f"{a}.{b}")
+        return Decimal(f"{a}.{b}")
     return int(number, 12)
 
 
@@ -23,7 +27,7 @@ def check_float(num):
     else:
         zn = ""
 
-    if isinstance(num, float):
+    if isinstance(num, decimal.Decimal):
         out = f"{to_base_12(int(str(num).split('.')[0]))}.{to_base_12(int(str(num).split('.')[1]))}"
     else:
         out = to_base_12(num)
@@ -35,9 +39,9 @@ def check_float(num):
 
 def calculate():
     # операции с числами
-    left_number = input('Введите первое число: ')
-    operation = input('Введите математическую операцию, для выполнения: ')
-    right_number = input('Введите второе число: ')
+    left_number = (input('Введите первое число: ') or 'a1.1')
+    operation = (input('Введите математическую операцию, для выполнения: ') or '+')
+    right_number = (input('Введите второе число: ') or 'b1.9')
 
     left_number_10 = to_base_10(left_number)
     right_number_10 = to_base_10(right_number)

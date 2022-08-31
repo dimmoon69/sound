@@ -6,7 +6,7 @@ COEFFICIENT = 1.059463094221
 class Calc:
     def __init__(self):
         self.letters = ['c', 'b', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
-        self.start = 1
+        self.start = 0
         self.num_interval = 0
         self.interval = 1
         self.data = {}
@@ -15,6 +15,16 @@ class Calc:
         self.calc = []
         self.value_1 = None
         self.value_2 = None
+
+    def again(self):
+        calc_again = input('\nВведите Y для повторения или N для выхода.')
+
+        if calc_again.upper() == 'Y':
+            Calc().calculator()
+        elif calc_again.upper() == 'N':
+            print('Увидимся позже.')
+        else:
+            self.again()
 
     def get_value(self):
         for num in range(10, 200, 10):
@@ -63,7 +73,7 @@ class Calc:
         print(df.fillna(""))
         df.to_excel('calculator.xlsx', index=False)
         print("\nРезультат был сохранен в файл с названием, calculator.xlsx")
-        again()
+        self.again()
 
     def calculator(self):
         self.value_1 = input("Введите переменную: ") or "20:n"
@@ -71,7 +81,7 @@ class Calc:
             self.value_2 = float(input("Введите значение: ") or 4.719)
         except:
             print("\nПроверьте введенное значение!")
-            again()
+            self.again()
 
         self.get_value()
         check = self.start_value()
@@ -103,17 +113,7 @@ class Calc:
             self.save_file()
         else:
             print("Проверьте введенную переменную!")
-
-
-def again():
-    calc_again = input('\nВведите Y для повторения или N для выхода.')
-
-    if calc_again.upper() == 'Y':
-        Calc().calculator()
-    elif calc_again.upper() == 'N':
-        print('Увидимся позже.')
-    else:
-        again()
+            self.again()
 
 
 if __name__ == '__main__':
