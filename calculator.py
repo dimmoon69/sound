@@ -5,7 +5,6 @@ COEFFICIENT = 1.059463094221
 
 class Calc:
     def __init__(self):
-        self.letters = ['c', 'b', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
         self.start = 0
         self.num_interval = 0
         self.interval = 1
