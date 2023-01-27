@@ -5,11 +5,11 @@ COEFFICIENT = 1.059463094221
 
 class Calc:
     def __init__(self):
+        self.column = 0
         self.start = 0
         self.num_interval = 0
         self.interval = 1
         self.data = {}
-        self.num_interval = 0
         self.total_interval = []
         self.calc = []
         self.value_1 = None
@@ -74,6 +74,7 @@ class Calc:
         self.again()
 
     def calculator(self):
+        self.column = input("Введите количество столбцов: ") or 25
         self.value_1 = input("Введите переменную: ") or "1"
         try:
             self.value_2 = float(input("Введите значение: ") or 1)
@@ -85,7 +86,7 @@ class Calc:
         check = self.start_value()
 
         if check:
-            for num in range(1, 25, 1):
+            for num in range(1, int(self.column), 1):
                 data_num = 0
                 self.data[num] = {}
                 self.data[f"Значение {num}"] = {}
