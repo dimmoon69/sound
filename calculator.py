@@ -26,7 +26,7 @@ class Calc:
             self.again()
 
     def get_value(self):
-        for num in range(1, 200, 1):
+        for num in range(1, 1000, 1):
             start = round(self.start * COEFFICIENT, 8)
             self.calc.append((f"{self.to_base_12(num)}", start))
 
