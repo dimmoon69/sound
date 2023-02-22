@@ -1,6 +1,6 @@
 import pandas
 
-COEFFICIENT = 1.059463094221
+COEFFICIENT = 2 ** (1 / 12)
 
 
 class Calc:
